@@ -226,7 +226,7 @@ public:
 	*/
 	bool Read(uintptr_t address, void* buffer, size_t size) const;
 	bool Read(uintptr_t address, void* buffer, size_t size, int pid) const;
-	bool Read(uintptr_t address, void* buffer, size_t size, PDWORD read) const;;
+	bool Read(uintptr_t address, void* buffer, size_t size, PDWORD read) const;
 
 	/**
 	* brief Reads memory from the process using a template

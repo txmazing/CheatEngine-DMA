@@ -212,6 +212,7 @@
     <ClCompile Include="Hooks\mem.cpp" />
     <ClCompile Include="Hooks\module.cpp" />
     <ClCompile Include="Hooks\process.cpp" />
+    <ClCompile Include="Hooks\threads.cpp" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>

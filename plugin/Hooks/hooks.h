@@ -4,6 +4,12 @@
 
 namespace Hooks
 {
+	enum KPROCESSOR_MODE
+	{
+		KernelMode,
+		UserMode,
+	};
+
 	//Mem.cpp
 	extern SIZE_T hk_virtual_query(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASIC_INFORMATION lpBuffer, SIZE_T dwLength);
 	extern bool hk_write(HANDLE hProcess, LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T* lpNumberOfBytesRead);
@@ -18,4 +24,15 @@ namespace Hooks
 	//Modules.cpp
 	extern BOOL hk_module_32_next(HANDLE hSnapshot, LPMODULEENTRY32 lpme);
 	extern BOOL hk_module_32_first(HANDLE hSnapshot, LPMODULEENTRY32 lpme);
+
+	//Threads.cpp
+	extern BOOL hk_thread_32_next(HANDLE hSnapshot, LPTHREADENTRY32 lpte);
+	extern BOOL hk_thread_32_first(HANDLE hSnapshot, LPTHREADENTRY32 lpte);
+
+	//Something still relies on OpenThread making this not working properly... gotto figure out what it is and implement it.
+	extern HANDLE hk_open_thread(DWORD dwDesiredAccess, BOOL bInheritHandle, DWORD dwThreadId);
+	extern BOOL hk_get_thread_context(HANDLE hThread, PCONTEXT pContext);
+	extern DWORD hk_resume_thread(HANDLE hThread);
+	extern DWORD hk_suspend_thread(HANDLE hThread);
+	extern BOOL hk_set_thread_context(HANDLE hThread, PCONTEXT pContext);
 }

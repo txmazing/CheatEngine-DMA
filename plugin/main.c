@@ -86,6 +86,17 @@ BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef, int pluginid)
 	auto process_32_next = ef->Process32Next;
 	auto module_32_first = ef->Module32First;
 	auto module_32_next = ef->Module32Next;
+	auto thread_32_first = ef->Thread32First;
+	auto thread_32_next = ef->Thread32Next;
+
+	/*auto open_thread = ef->OpenThread;
+	auto get_thread_context = ef->GetThreadContext;
+	auto set_thread_context = ef->SetThreadContext;
+	auto suspend_thread = ef->SuspendThread;
+	auto resume_thread = ef->ResumeThread;*/
+
+	printf("Initialize DMA in advance (Required for Set Thread Context)\n");
+	mem.Init("", true);
 
 	printf("Hooking Open Process 0x%p\n", open_process);
 	*(uintptr_t*)(open_process) = (uintptr_t)&Hooks::hk_open_process;
@@ -114,8 +125,28 @@ BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef, int pluginid)
 	printf("Hooking Module32Next 0x%p\n", module_32_next);
 	*(uintptr_t*)(module_32_next) = (uintptr_t)&Hooks::hk_module_32_next;
 
-	printf("Initialize DMA in advance\n");
-	mem.Init("", true);
+	printf("Hooking Thread32First 0x%p\n", thread_32_first);
+	*(uintptr_t*)(thread_32_first) = (uintptr_t)&Hooks::hk_thread_32_first;
+
+	printf("Hooking Thread32Next 0x%p\n", thread_32_next);
+	*(uintptr_t*)(thread_32_next) = (uintptr_t)&Hooks::hk_thread_32_next;
+
+	//Check comment in Hooks.h for why this is commented out.
+	/*
+	 printf("Hooking OpenThread 0x%p\n", open_thread);
+	*(uintptr_t*)(open_thread) = (uintptr_t)&Hooks::hk_open_thread;
+	
+	 printf("Hooking GetThreadContext 0x%p\n", get_thread_context);
+	*(uintptr_t*)(get_thread_context) = (uintptr_t)&Hooks::hk_get_thread_context;
+
+	printf("Hooking SetThreadContext 0x%p\n", set_thread_context);
+	*(uintptr_t*)(set_thread_context) = (uintptr_t)&Hooks::hk_set_thread_context;
+
+	printf("Hooking SuspendThread 0x%p\n", suspend_thread);
+	*(uintptr_t*)(suspend_thread) = (uintptr_t)&Hooks::hk_suspend_thread;
+
+	printf("Hooking ResumeThread 0x%p\n", resume_thread);
+	*(uintptr_t*)(resume_thread) = (uintptr_t)&Hooks::hk_resume_thread;*/
 
 	//TODO: fix this, this doesn't seem to work for me, i don't know why.
 	/*init4.callbackroutine = PointersReassigned;
