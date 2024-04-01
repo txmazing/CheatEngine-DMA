@@ -209,6 +209,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Hooks\mem.cpp" />
+    <ClCompile Include="Hooks\module.cpp" />
+    <ClCompile Include="Hooks\process.cpp" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +221,7 @@
     <ClInclude Include="CheatEngine\lua.hpp" />
     <ClInclude Include="CheatEngine\luaconf.h" />
     <ClInclude Include="CheatEngine\lualib.h" />
+    <ClInclude Include="Hooks\hooks.h" />
     <ClInclude Include="Memory\memmy.h" />
     <ClInclude Include="Memory\vad.h" />
   </ItemGroup>

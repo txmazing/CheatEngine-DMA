@@ -2,6 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.c" />
+    <ClCompile Include="Hooks\mem.cpp" />
+    <ClCompile Include="Hooks\process.cpp" />
+    <ClCompile Include="Hooks\module.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Memory\memmy.h" />
@@ -12,6 +15,7 @@
     <ClInclude Include="CheatEngine\lua.hpp" />
     <ClInclude Include="CheatEngine\luaconf.h" />
     <ClInclude Include="CheatEngine\lualib.h" />
+    <ClInclude Include="Hooks\hooks.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CheatEngine">

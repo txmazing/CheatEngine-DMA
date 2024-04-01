@@ -1,5 +1,6 @@
 #pragma once
 #include "../pch.h"
+//#include "memory.h"
 
 class c_shellcode
 {
@@ -11,29 +12,29 @@ public:
 	~c_shellcode() = default;
 
 	/**
-	* /Brief Finds a code cave in the target process, that's atleast size of function_size & has Read, Write, Execute permission.
+	* @Brief Finds a code cave in the target process, that's atleast size of function_size & has Read, Write, Execute permission.
 	* @param function_size - the size of the function we're gonna inject
 	* @param process_name - the name of the process we're gonna inject to
 	* @return the address of the code cave, if failed it returns 0
 	**/
-	uint64_t find_codecave(size_t function_size, std::string process_name, std::string module);
+	uint64_t find_codecave(size_t function_size, const std::string& process_name, const std::string& module);
 
 	/**
-	* \brief finds all code caves in the target process, that's atleast size of function_size & has Read, Write, Execute permission.
-	* \param function_size - the size of the function we're gonna inject 
-	* \param process_name - the name of the process we're gonna inject to
-	* \return all addresses that has a big enough codecave for us.
+	* @brief finds all code caves in the target process, that's atleast size of function_size & has Read, Write, Execute permission.
+	* @param function_size - the size of the function we're gonna inject 
+	* @param process_name - the name of the process we're gonna inject to
+	* @return all addresses that has a big enough codecave for us.
 	**/
-	std::vector<uint64_t> find_all_codecave(size_t function_size, std::string process_name);
+	std::vector<uint64_t> find_all_codecave(size_t function_size, const std::string& process_name);
 
 	/**
 	* @param hook - the function we're gonna hook to call the function param
 	* @param function - the function to call
+	* @param process_name - the name of the process we're gonna inject to
 	* @return true if successful, false if not.
 	**/
-	bool call_function(void* hook, void* function, std::string process_name);
+	bool call_function(void* hook, void* function, const std::string& process_name);
 
-	//TODO: figure out the mem undeclared fuckery
 	/*template <typename T, typename... Args>
 	auto SysCall(uint64_t function, Args&&... args) -> std::enable_if_t<!std::is_void<std::invoke_result_t<T, Args...>>::value, std::invoke_result_t<T, Args...>>
 	{
@@ -53,9 +54,10 @@ public:
 		if (!mem.Read(ntos_shutdown, (PBYTE)orig_bytes, sizeof(orig_bytes), 4))
 			return buffer;
 
-		if (!VMMDLL_MemWrite(mem.vHandle, 4, ntos_shutdown, jmp_bytes, sizeof(jmp_bytes)))
+	
+		if (!mem.Write(ntos_shutdown, jmp_bytes, sizeof(jmp_bytes), 4))
 		{
-			printf("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
+			LOG("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
 			return buffer;
 		}
 
@@ -63,11 +65,9 @@ public:
 		buffer = std::invoke(reinterpret_cast<T>(nt_shutdown), std::forward<Args>(args)...);
 
 		//Restore function
-		if (!VMMDLL_MemWrite(mem.vHandle, 4, ntos_shutdown, orig_bytes, sizeof(orig_bytes)))
-		{
+		if (!mem.Write(ntos_shutdown, orig_bytes, sizeof(orig_bytes), 4))
 			LOG("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
-			return buffer;
-		}
+
 		return buffer;
 	}
 
@@ -89,20 +89,16 @@ public:
 		BYTE orig_bytes[sizeof(jmp_bytes)];
 		if (!mem.Read(ntos_shutdown, (PBYTE)orig_bytes, sizeof(orig_bytes), 4))
 			return;
-
-		if (!VMMDLL_MemWrite(mem.vHandle, 4, ntos_shutdown, jmp_bytes, sizeof(jmp_bytes)))
+		if (!mem.Write(ntos_shutdown, jmp_bytes, sizeof(jmp_bytes), 4))
 		{
-			printf("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
+			LOG("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
 			return;
 		}
 
 		std::invoke(reinterpret_cast<T>(nt_shutdown), std::forward<Args>(args)...);
 
 		// Restore function
-		if (!VMMDLL_MemWrite(mem.vHandle, 4, ntos_shutdown, orig_bytes, sizeof(orig_bytes)))
-		{
+		if (!mem.Write(ntos_shutdown, orig_bytes, sizeof(orig_bytes), 4))
 			LOG("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
-			return;
-		}
 	}*/
 };
