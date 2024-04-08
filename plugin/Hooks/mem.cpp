@@ -8,9 +8,6 @@
 
 namespace Hooks
 {
-	std::vector<c_memory_region<vad_info>> memoryMap;
-	std::vector<vad_info> vad_infos;
-
 	HANDLE hk_open_process(DWORD dwDesiredAccess, BOOL bInheritHandle, DWORD dwProcessId)
 	{
 		if (mem.Init(dwProcessId))
@@ -33,8 +30,6 @@ namespace Hooks
 	{
 		std::list<c_memory_region<vad_info>> result = { };
 		PVMMDLL_MAP_VAD vads = nullptr;
-		memoryMap.clear();
-		vad_infos.clear();
 
 		if (!VMMDLL_Map_GetVadW(mem.vHandle, mem.current_process.PID, true, &vads))
 			return { };
