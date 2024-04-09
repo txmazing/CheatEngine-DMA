@@ -145,7 +145,7 @@ public:
 	* @param module the name of the module that you wanna find the export in
 	* @return the export table address of the export
 	*/
-	uintptr_t GetExportTableAddress(std::string import, std::string process, std::string module);
+	uintptr_t GetExportTableAddress(std::string import, std::string process, std::string module, bool kernel = false);
 
 	/**
 	* brief Gets the import table address of the process
