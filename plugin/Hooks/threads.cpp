@@ -12,7 +12,7 @@ namespace Hooks
 	template <typename T, typename... Args>
 	auto SysCall(uint64_t function, Args&&... args) -> std::enable_if_t<!std::is_void<std::invoke_result_t<T, Args...>>::value, std::invoke_result_t<T, Args...>>
 	{
-		uintptr_t ntos_shutdown = mem.GetExportTableAddress("NtShutdownSystem", "csrss.exe", "ntoskrnl.exe");
+		uintptr_t ntos_shutdown = mem.GetExportTableAddress("NtShutdownSystem", "csrss.exe", "ntoskrnl.exe", true);
 		uint64_t nt_shutdown = (uint64_t)GetProcAddress(LoadLibraryA("ntdll.dll"), "NtShutdownSystem");
 
 		if (!function)
@@ -36,7 +36,10 @@ namespace Hooks
 		// Save original bytes
 		BYTE orig_bytes[sizeof(jmp_bytes)];
 		if (!mem.Read(ntos_shutdown, (PBYTE)orig_bytes, sizeof(orig_bytes), 4))
+		{
+			printf("[!] Failed to read memory to save original bytes\n", ntos_shutdown);
 			return { };
+		}
 
 		if (!mem.Write(ntos_shutdown, jmp_bytes, sizeof(jmp_bytes), 4))
 		{
@@ -57,7 +60,7 @@ namespace Hooks
 
 	NTSTATUS fnPsLookupThreadByThreadId(HANDLE threadId, void* thread)
 	{
-		auto ptr = mem.GetExportTableAddress("PsLookupThreadByThreadId", "csrss.exe", "ntoskrnl.exe");
+		auto ptr = mem.GetExportTableAddress("PsLookupThreadByThreadId", "csrss.exe", "ntoskrnl.exe", true);
 		if (ptr > 0)
 			return SysCall<PsLookupThreadByThreadId>(ptr, threadId, thread);
 		return 1;
@@ -65,7 +68,7 @@ namespace Hooks
 
 	NTSTATUS fnPsGetContextThread(void* thread, PCONTEXT context, KPROCESSOR_MODE previousMode)
 	{
-		auto ptr = mem.GetExportTableAddress("PsGetContextThread", "csrss.exe", "ntoskrnl.exe");
+		auto ptr = mem.GetExportTableAddress("PsGetContextThread", "csrss.exe", "ntoskrnl.exe", true);
 		if (ptr > 0)
 			return SysCall<PsGetContextThread>(ptr, thread, context, previousMode);
 		return 1;
@@ -73,7 +76,7 @@ namespace Hooks
 
 	NTSTATUS fnPsSetContextThread(void* thread, PCONTEXT context, KPROCESSOR_MODE previousMode)
 	{
-		auto ptr = mem.GetExportTableAddress("PsSetContextThread", "csrss.exe", "ntoskrnl.exe");
+		auto ptr = mem.GetExportTableAddress("PsSetContextThread", "csrss.exe", "ntoskrnl.exe", true);
 		if (ptr > 0)
 			return SysCall<PsSetContextThread>(ptr, thread, context, previousMode);
 		return 1;
@@ -149,6 +152,7 @@ namespace Hooks
 		printf("Created Thread: %p\n", hThread);
 		if (status == 0)
 			return hThread;
+		printf("Returning null.. reason: %x\n", status);
 		return nullptr;
 	}
 

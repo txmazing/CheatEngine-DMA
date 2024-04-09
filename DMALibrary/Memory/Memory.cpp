@@ -372,11 +372,15 @@ size_t Memory::GetBaseSize(std::string module_name)
 	return 0;
 }
 
-uintptr_t Memory::GetExportTableAddress(std::string import, std::string process, std::string module)
+uintptr_t Memory::GetExportTableAddress(std::string import, std::string process, std::string module, bool kernel)
 {
 	PVMMDLL_MAP_EAT eat_map = NULL;
 	PVMMDLL_MAP_EATENTRY export_entry = NULL;
-	bool result = VMMDLL_Map_GetEATU(mem.vHandle, mem.GetPidFromName(process) /*| VMMDLL_PID_PROCESS_WITH_KERNELMEMORY*/, const_cast<LPSTR>(module.c_str()), &eat_map);
+	bool result = false;
+	if (kernel)
+		result = VMMDLL_Map_GetEATU(mem.vHandle, mem.GetPidFromName(process) | VMMDLL_PID_PROCESS_WITH_KERNELMEMORY, const_cast<LPSTR>(module.c_str()), &eat_map);
+	else
+		result = VMMDLL_Map_GetEATU(mem.vHandle, mem.GetPidFromName(process), const_cast<LPSTR>(module.c_str()), &eat_map);
 	if (!result)
 	{
 		LOG("[!] Failed to get Export Table\n");
