@@ -10,6 +10,7 @@ Cheat Engine Plugin for DMA users ADD MORE STUFF HERE, BRIEF EXPLANATION OF WHAT
 * Module Iteration
 * Process Iteration
 * Thread Iteration
+* Pointer Scans
 
 Functions not mentioned here may or may not work, I don't have any plans to support the other features unless I personally need them.
 
