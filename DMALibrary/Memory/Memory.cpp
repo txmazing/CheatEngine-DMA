@@ -758,6 +758,7 @@ bool Memory::Read(uintptr_t address, void* buffer, size_t size, int pid) const
 
 bool Memory::Read(uintptr_t address, void* buffer, size_t size, PDWORD read) const
 {
+	*read = 0;
 	if (!VMMDLL_MemReadEx(this->vHandle, current_process.PID, address, static_cast<PBYTE>(buffer), size, read, VMMDLL_FLAG_NOCACHE))
 	{
 		LOG("[!] Failed to read Memory at 0x%p\n", address);

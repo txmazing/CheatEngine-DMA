@@ -1,4 +1,6 @@
 #pragma once
+#include <cstdint>
+
 #include "CheatEngine/cepluginsdk.h"
 #include <TlHelp32.h>
 
@@ -10,6 +12,40 @@ namespace Hooks
 		UserMode,
 	};
 
+	inline void* detour_function(void* pSource, void* pDestination)
+	{
+		printf("Detouring function at %p to %p\n", pSource, pDestination);
+		BYTE jmp_bytes[14] = {
+			0xff, 0x25, 0x00, 0x00, 0x00, 0x00, // jmp [RIP+0x00000000]
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 // RIP value
+		};
+		*reinterpret_cast<uint64_t*>(jmp_bytes + 6) = reinterpret_cast<uint64_t>(pDestination);
+
+		void* stub = VirtualAlloc(0, sizeof(jmp_bytes), MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+		if (!stub)
+		{
+			printf("VirtualAlloc failed!\n");
+			return nullptr;
+		}
+
+		memcpy(stub, pSource, sizeof(jmp_bytes));
+
+		DWORD old_protect;
+		if (VirtualProtect(pSource, sizeof(jmp_bytes), PAGE_EXECUTE_READWRITE, &old_protect))
+		{
+			memcpy(pSource, jmp_bytes, sizeof(jmp_bytes));
+			VirtualProtect(pSource, sizeof(jmp_bytes), old_protect, &old_protect);
+		}
+		else
+		{
+			printf("VirtualProtect failed!\n");
+			VirtualFree(stub, 0, MEM_RELEASE);
+			return nullptr;
+		}
+
+		return stub;
+	}
+
 	//Mem.cpp
 	extern SIZE_T hk_virtual_query(HANDLE hProcess, LPCVOID lpAddress, PMEMORY_BASIC_INFORMATION lpBuffer, SIZE_T dwLength);
 	extern bool hk_write(HANDLE hProcess, LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T* lpNumberOfBytesRead);
@@ -20,6 +56,7 @@ namespace Hooks
 	extern HANDLE hk_create_tool_help_32_snapshot(DWORD dwFlags, DWORD th32ProcessID);
 	extern BOOL hk_process_32_first(HANDLE hSnapshot, LPPROCESSENTRY32 lppe);
 	extern BOOL hk_process_32_next(HANDLE hSnapshot, LPPROCESSENTRY32 lppe);
+	extern BOOL WINAPI hk_IsWow64Process(HANDLE hProcess, PBOOL Wow64Process);
 
 	//Modules.cpp
 	extern BOOL hk_module_32_next(HANDLE hSnapshot, LPMODULEENTRY32 lpme);

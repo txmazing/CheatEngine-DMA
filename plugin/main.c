@@ -131,10 +131,11 @@ BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef, int pluginid)
 	printf("Hooking Thread32Next 0x%p\n", thread_32_next);
 	*(uintptr_t*)(thread_32_next) = (uintptr_t)&Hooks::hk_thread_32_next;
 
+	/*printf("Hooking OpenThread 0x%p\n", open_thread);
+	*(uintptr_t*)(open_thread) = (uintptr_t)&Hooks::hk_open_thread;*/
+
 	//Check comment in Hooks.h for why this is commented out.
 	/*
-	 printf("Hooking OpenThread 0x%p\n", open_thread);
-	*(uintptr_t*)(open_thread) = (uintptr_t)&Hooks::hk_open_thread;
 	
 	 printf("Hooking GetThreadContext 0x%p\n", get_thread_context);
 	*(uintptr_t*)(get_thread_context) = (uintptr_t)&Hooks::hk_get_thread_context;
@@ -156,6 +157,9 @@ BOOL __stdcall CEPlugin_InitializePlugin(PExportedFunctions ef, int pluginid)
 		Exported.ShowMessage("Failure to register the pointer reassignment plugin");
 		return FALSE;
 	}*/
+
+	Hooks::detour_function(&IsWow64Process, Hooks::hk_IsWow64Process);
+	//hk_IsWow64Process
 
 	init1.name = "DMA Methicc CE Plugin";
 	init1.callbackroutine = mainmenuplugin;

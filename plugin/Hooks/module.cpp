@@ -18,7 +18,7 @@ namespace Hooks
 		lpme->hModule = (HMODULE)module_info->pMap[current_module].vaBase;
 		lpme->modBaseSize = module_info->pMap[current_module].cbImageSize;
 		lpme->modBaseAddr = (BYTE*)module_info->pMap[current_module].vaBase;
-		strcpy(lpme->szModule, module_info->pMap[current_module].uszText);
+		strcpy(lpme->szModule, module_info->pMap[current_module].uszFullName);
 		strcpy(lpme->szExePath, module_info->pMap[current_module].uszText);
 		return true;
 	}

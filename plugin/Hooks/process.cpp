@@ -7,6 +7,14 @@ namespace Hooks
 	DWORD current_process = 0;
 	PVMMDLL_PROCESS_INFORMATION info = NULL;
 
+	//IsWow64Process
+	typedef BOOL (WINAPI*IsWow64Process_t)(HANDLE, PBOOL);
+
+	BOOL WINAPI hk_IsWow64Process(HANDLE hProcess, PBOOL Wow64Process)
+	{
+		return true;
+	}
+
 	HANDLE hk_create_tool_help_32_snapshot(DWORD dwFlags, DWORD th32ProcessID)
 	{
 		return (HANDLE)0x66;

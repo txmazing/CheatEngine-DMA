@@ -9,7 +9,7 @@ namespace Hooks
 	typedef NTSTATUS (__stdcall*PsSuspendThread)(/*PETHREAD*/void* Thread, PULONG PreviousSuspendCount);
 	typedef NTSTATUS (__stdcall*PsResumeThread)(/*PETHREAD*/void* Thread, PULONG PreviousSuspendCount);
 
-	template <typename T, typename... Args>
+	/*template <typename T, typename... Args>
 	auto SysCall(uint64_t function, Args&&... args) -> std::enable_if_t<!std::is_void<std::invoke_result_t<T, Args...>>::value, std::invoke_result_t<T, Args...>>
 	{
 		uintptr_t ntos_shutdown = mem.GetExportTableAddress("NtShutdownSystem", "csrss.exe", "ntoskrnl.exe", true);
@@ -56,6 +56,53 @@ namespace Hooks
 			printf("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
 
 		return buffer;
+	}*/
+
+	template <class T, class... Args>
+	__forceinline std::invoke_result_t<T, Args...> SysCall(uintptr_t addr, Args... args)
+	{
+		uintptr_t ntos_shutdown = mem.GetExportTableAddress("NtShutdownSystem", "csrss.exe", "ntoskrnl.exe", true);
+		uint64_t nt_shutdown = (uint64_t)GetProcAddress(LoadLibraryA("ntdll.dll"), "NtShutdownSystem");
+
+		if (!addr)
+		{
+			printf("[!] Failed to get function address\n");
+			return { };
+		}
+
+		if (ntos_shutdown == 0 || nt_shutdown == 0)
+		{
+			printf("[!] Failed to get NtShutdownSystem address\n");
+			return { };
+		}
+
+		BYTE jmp_bytes[14] = {
+			0xff, 0x25, 0x00, 0x00, 0x00, 0x00, // jmp [RIP+0x00000000]
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 // RIP value
+		};
+
+		*reinterpret_cast<uintptr_t*>(jmp_bytes + 6) = addr;
+
+		std::uint8_t orig_bytes[sizeof jmp_bytes];
+		if (!mem.Read(ntos_shutdown, orig_bytes, sizeof(orig_bytes), 4))
+		{
+			printf("[!] Failed to read memory to save original bytes\n", ntos_shutdown);
+			return { };
+		}
+
+		// execute hook...
+		if (!mem.Write(ntos_shutdown, jmp_bytes, sizeof(jmp_bytes), 4))
+		{
+			printf("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
+			return { };
+		}
+
+		auto result = reinterpret_cast<T>(nt_shutdown)(args...);
+
+		if (!mem.Write(ntos_shutdown, orig_bytes, sizeof(orig_bytes), 4))
+			printf("[!] Failed to write memory at 0x%p\n", ntos_shutdown);
+
+		return result;
 	}
 
 	NTSTATUS fnPsLookupThreadByThreadId(HANDLE threadId, void* thread)
@@ -89,24 +136,24 @@ namespace Hooks
 		{
 			PVMMDLL_MAP_MODULEENTRY module_info;
 			auto result = VMMDLL_Map_GetModuleFromNameW(mem.vHandle, 4, (LPWSTR)L"ntoskrnl.exe", &module_info, VMMDLL_MODULE_FLAG_NORMAL);
-			if (result)
-			{
-				char str[32];
-				ZeroMemory(str, 32);
-				if (!VMMDLL_PdbLoad(mem.vHandle, 4, module_info->vaBase, str))
-				{
-					printf("failed to load pdb\n");
-					return 1;
-				}
+			if (!result)
+				return 1;
 
-				if (!VMMDLL_PdbSymbolAddress(mem.vHandle, str, (LPSTR)"PsSuspendThread", &ptr))
-				{
-					printf("failed to find PsSuspendThread\n");
-					return 1;
-				}
-				if (ptr > 0)
-					return SysCall<PsSuspendThread>(ptr, thread, previousSuspendCount);
+			char str[32];
+			ZeroMemory(str, 32);
+			if (!VMMDLL_PdbLoad(mem.vHandle, 4, module_info->vaBase, str))
+			{
+				printf("failed to load pdb\n");
+				return 1;
 			}
+
+			if (!VMMDLL_PdbSymbolAddress(mem.vHandle, str, (LPSTR)"PsSuspendThread", &ptr))
+			{
+				printf("failed to find PsSuspendThread\n");
+				return 1;
+			}
+			if (ptr > 0)
+				return SysCall<PsSuspendThread>(ptr, thread, previousSuspendCount);
 		}
 		if (ptr > 0)
 			return SysCall<PsSuspendThread>(ptr, thread, previousSuspendCount);
@@ -120,24 +167,24 @@ namespace Hooks
 		{
 			PVMMDLL_MAP_MODULEENTRY module_info;
 			auto result = VMMDLL_Map_GetModuleFromNameW(mem.vHandle, 4, (LPWSTR)L"ntoskrnl.exe", &module_info, VMMDLL_MODULE_FLAG_NORMAL);
-			if (result)
-			{
-				char str[32];
-				ZeroMemory(str, 32);
-				if (!VMMDLL_PdbLoad(mem.vHandle, 4, module_info->vaBase, str))
-				{
-					printf("failed to load pdb\n");
-					return 1;
-				}
+			if (!result)
+				return 1;
 
-				if (!VMMDLL_PdbSymbolAddress(mem.vHandle, str, (LPSTR)"PsResumeThread", &ptr))
-				{
-					printf("failed to find PsResumeThread\n");
-					return 1;
-				}
-				if (ptr > 0)
-					return SysCall<PsResumeThread>(ptr, thread, previousSuspendCount);
+			char str[32];
+			ZeroMemory(str, 32);
+			if (!VMMDLL_PdbLoad(mem.vHandle, 4, module_info->vaBase, str))
+			{
+				printf("failed to load pdb\n");
+				return 1;
 			}
+
+			if (!VMMDLL_PdbSymbolAddress(mem.vHandle, str, (LPSTR)"PsResumeThread", &ptr))
+			{
+				printf("failed to find PsResumeThread\n");
+				return 1;
+			}
+			if (ptr > 0)
+				return SysCall<PsResumeThread>(ptr, thread, previousSuspendCount);
 		}
 		if (ptr > 0)
 			return SysCall<PsResumeThread>(ptr, thread, previousSuspendCount);

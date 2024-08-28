@@ -1,0 +1,346 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\process.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\Hooks\\process.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\mem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\Hooks\\mem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\threads.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\Hooks\\threads.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\module.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\Hooks\\module.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|solutionrelative:DMALibrary\\Memory\\Memory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\hooks.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\Hooks\\hooks.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\cepluginsdk.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\CheatEngine\\cepluginsdk.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Memory\\vad.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\Memory\\vad.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lua.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\CheatEngine\\lua.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\luaconf.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\CheatEngine\\luaconf.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lualib.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\CheatEngine\\lualib.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lua.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\CheatEngine\\lua.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lauxlib.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\CheatEngine\\lauxlib.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\um\\TlHelp32.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Shellcode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|solutionrelative:DMALibrary\\Memory\\Shellcode.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Memory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|solutionrelative:DMALibrary\\Memory\\Memory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Memory\\memmy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3A688B63-7CE8-4993-BEC5-E7FE48B73F03}|plugin\\plugin.vcxproj|solutionrelative:plugin\\Memory\\memmy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\DMALibrary.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|solutionrelative:DMALibrary\\DMALibrary.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\InputManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F02F56B1-10CD-4654-B744-93ABE6E15FF0}|DMALibrary\\DMALibrary.vcxproj|solutionrelative:DMALibrary\\Memory\\InputManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 308,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "threads.cpp",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\threads.cpp",
+              "RelativeDocumentMoniker": "plugin\\Hooks\\threads.cpp",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\threads.cpp",
+              "RelativeToolTip": "plugin\\Hooks\\threads.cpp",
+              "ViewState": "AQIAAOIAAAAAAAAAAAAkwPEAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T13:23:37.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TlHelp32.h",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\um\\TlHelp32.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\um\\TlHelp32.h",
+              "ToolTip": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\um\\TlHelp32.h",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0\\um\\TlHelp32.h",
+              "ViewState": "AQIAAKMAAAAAAAAAAAAlwLYAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-08T14:27:31.245Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "module.cpp",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\module.cpp",
+              "RelativeDocumentMoniker": "plugin\\Hooks\\module.cpp",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\module.cpp",
+              "RelativeToolTip": "plugin\\Hooks\\module.cpp",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABEAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T12:44:23.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "process.cpp",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\process.cpp",
+              "RelativeDocumentMoniker": "plugin\\Hooks\\process.cpp",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\process.cpp",
+              "RelativeToolTip": "plugin\\Hooks\\process.cpp",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAkwBMAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T12:43:48.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "mem.cpp",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\mem.cpp",
+              "RelativeDocumentMoniker": "plugin\\Hooks\\mem.cpp",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\mem.cpp",
+              "RelativeToolTip": "plugin\\Hooks\\mem.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T12:43:44.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "hooks.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\hooks.h",
+              "RelativeDocumentMoniker": "plugin\\Hooks\\hooks.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Hooks\\hooks.h",
+              "RelativeToolTip": "plugin\\Hooks\\hooks.h",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-01T12:43:39.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Memory.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Memory.h",
+              "RelativeDocumentMoniker": "DMALibrary\\Memory\\Memory.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Memory.h",
+              "RelativeToolTip": "DMALibrary\\Memory\\Memory.h",
+              "ViewState": "AQIAAIAAAAAAAAAAAAAlwIgAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-01-16T10:18:16.062Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "cepluginsdk.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\cepluginsdk.h",
+              "RelativeDocumentMoniker": "plugin\\CheatEngine\\cepluginsdk.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\cepluginsdk.h",
+              "RelativeToolTip": "plugin\\CheatEngine\\cepluginsdk.h",
+              "ViewState": "AQIAABwBAAAAAAAAAAAvwFwBAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-01-16T10:08:14.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "lua.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lua.h",
+              "RelativeDocumentMoniker": "plugin\\CheatEngine\\lua.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lua.h",
+              "RelativeToolTip": "plugin\\CheatEngine\\lua.h",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-17T11:19:16.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "lauxlib.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lauxlib.h",
+              "RelativeDocumentMoniker": "plugin\\CheatEngine\\lauxlib.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lauxlib.h",
+              "RelativeToolTip": "plugin\\CheatEngine\\lauxlib.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-17T11:19:17.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Memory.cpp",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Memory.cpp",
+              "RelativeDocumentMoniker": "DMALibrary\\Memory\\Memory.cpp",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Memory.cpp",
+              "RelativeToolTip": "DMALibrary\\Memory\\Memory.cpp",
+              "ViewState": "AQIAACwBAAAAAAAAAAAkwDsBAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-01-16T10:18:15.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DMALibrary.cpp",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\DMALibrary.cpp",
+              "RelativeDocumentMoniker": "DMALibrary\\DMALibrary.cpp",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\DMALibrary.cpp",
+              "RelativeToolTip": "DMALibrary\\DMALibrary.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-01T13:30:40.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\main.c",
+              "RelativeDocumentMoniker": "plugin\\main.c",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\main.c",
+              "RelativeToolTip": "plugin\\main.c",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAIwFoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-01-03T18:25:30.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "lua.hpp",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lua.hpp",
+              "RelativeDocumentMoniker": "plugin\\CheatEngine\\lua.hpp",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lua.hpp",
+              "RelativeToolTip": "plugin\\CheatEngine\\lua.hpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-17T11:19:21.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "luaconf.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\luaconf.h",
+              "RelativeDocumentMoniker": "plugin\\CheatEngine\\luaconf.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\luaconf.h",
+              "RelativeToolTip": "plugin\\CheatEngine\\luaconf.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-17T11:19:23.152Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "lualib.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lualib.h",
+              "RelativeDocumentMoniker": "plugin\\CheatEngine\\lualib.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\CheatEngine\\lualib.h",
+              "RelativeToolTip": "plugin\\CheatEngine\\lualib.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-17T11:19:23.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Shellcode.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Shellcode.h",
+              "RelativeDocumentMoniker": "DMALibrary\\Memory\\Shellcode.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\Shellcode.h",
+              "RelativeToolTip": "DMALibrary\\Memory\\Shellcode.h",
+              "ViewState": "AQIAADQAAAAAAAAAAAAlwEcAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-01T13:30:46.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "vad.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Memory\\vad.h",
+              "RelativeDocumentMoniker": "plugin\\Memory\\vad.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Memory\\vad.h",
+              "RelativeToolTip": "plugin\\Memory\\vad.h",
+              "ViewState": "AQIAABwAAAAAAAAAAAAUwD4AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-01-03T18:25:48.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "InputManager.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\InputManager.h",
+              "RelativeDocumentMoniker": "DMALibrary\\Memory\\InputManager.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\DMALibrary\\Memory\\InputManager.h",
+              "RelativeToolTip": "DMALibrary\\Memory\\InputManager.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-01-16T10:18:14.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "memmy.h",
+              "DocumentMoniker": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Memory\\memmy.h",
+              "RelativeDocumentMoniker": "plugin\\Memory\\memmy.h",
+              "ToolTip": "C:\\Users\\Rosalyn\\Documents\\GitHub\\CheatEngine-DMA\\plugin\\Memory\\memmy.h",
+              "RelativeToolTip": "plugin\\Memory\\memmy.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-01-03T18:24:47.684Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
