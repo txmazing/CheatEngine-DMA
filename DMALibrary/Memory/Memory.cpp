@@ -235,6 +235,8 @@ bool Memory::Init(std::string process_name, bool memMap, bool debug)
 	LOG("Base Address: 0x%llx\n", current_process.base_address);
 	LOG("Base Size: 0x%llx\n", current_process.base_size);
 
+	mem.DumpMemory(current_process.base_address, "D:\\Dumps\\dump.exe");
+
 	PROCESS_INITIALIZED = TRUE;
 
 	return true;
@@ -715,22 +717,26 @@ uint64_t Memory::FindSignature(const char* signature, uint64_t range_start, uint
 
 bool Memory::Write(uintptr_t address, void* buffer, size_t size) const
 {
-	if (!VMMDLL_MemWrite(this->vHandle, current_process.PID, address, static_cast<PBYTE>(buffer), size))
+	/*if (!VMMDLL_MemWrite(this->vHandle, current_process.PID, address, static_cast<PBYTE>(buffer), size))
 	{
 		LOG("[!] Failed to write Memory at 0x%p\n", address);
 		return false;
 	}
-	return true;
+	return true;*/
+
+	return false;
 }
 
 bool Memory::Write(uintptr_t address, void* buffer, size_t size, int pid) const
 {
-	if (!VMMDLL_MemWrite(this->vHandle, pid, address, static_cast<PBYTE>(buffer), size))
+	/*if (!VMMDLL_MemWrite(this->vHandle, pid, address, static_cast<PBYTE>(buffer), size))
 	{
 		LOG("[!] Failed to write Memory at 0x%p\n", address);
 		return false;
 	}
-	return true;
+	return true;*/
+
+	return false;
 }
 
 bool Memory::Read(uintptr_t address, void* buffer, size_t size) const
@@ -798,10 +804,12 @@ void Memory::AddScatterReadRequest(VMMDLL_SCATTER_HANDLE handle, uint64_t addres
 
 void Memory::AddScatterWriteRequest(VMMDLL_SCATTER_HANDLE handle, uint64_t address, void* buffer, size_t size)
 {
-	if (!VMMDLL_Scatter_PrepareWrite(handle, address, static_cast<PBYTE>(buffer), size))
+	/*if (!VMMDLL_Scatter_PrepareWrite(handle, address, static_cast<PBYTE>(buffer), size))
 	{
 		LOG("[!] Failed to prepare scatter write at 0x%p\n", address);
-	}
+	}*/
+
+	LOG("[!] Failed to prepare scatter write at 0x%p\n", address);
 }
 
 void Memory::ExecuteReadScatter(VMMDLL_SCATTER_HANDLE handle, int pid)
@@ -825,7 +833,7 @@ void Memory::ExecuteWriteScatter(VMMDLL_SCATTER_HANDLE handle, int pid)
 	if (pid == 0)
 		pid = current_process.PID;
 
-	if (!VMMDLL_Scatter_Execute(handle))
+	/*if (!VMMDLL_Scatter_Execute(handle))
 	{
 		LOG("[-] Failed to Execute Scatter Read\n");
 	}
@@ -833,5 +841,7 @@ void Memory::ExecuteWriteScatter(VMMDLL_SCATTER_HANDLE handle, int pid)
 	if (!VMMDLL_Scatter_Clear(handle, pid, VMMDLL_FLAG_NOCACHE))
 	{
 		LOG("[-] Failed to clear Scatter\n");
-	}
+	}*/
+
+	LOG("[-] Failed to Execute Scatter Read\n");
 }

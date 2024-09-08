@@ -45,3 +45,4 @@
 plugin/.vs/example-c/v17/.suo
 *.exp
 /.vs
+/x64

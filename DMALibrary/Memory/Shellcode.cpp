@@ -102,20 +102,26 @@ bool c_shellcode::call_function(void* hook, void* function, const std::string& p
 	if (!mem.Read(reinterpret_cast<uintptr_t>(function), orig_bytes.get(), sizeof(jmp_bytes), pid))
 		return 0;
 
-	if (!VMMDLL_MemWrite(mem.vHandle, pid, reinterpret_cast<uintptr_t>(function), jmp_bytes, sizeof(jmp_bytes)))
+	/*if (!VMMDLL_MemWrite(mem.vHandle, pid, reinterpret_cast<uintptr_t>(function), jmp_bytes, sizeof(jmp_bytes)))
 	{
 		LOG("[!] 1 Failed to write memory at 0x%p\n", function);
 		return false;
-	}
+	}*/
+
+	LOG("[!] 1 Failed to write memory at 0x%p\n", function);
+	return false;
 
 	Sleep(100);
 
 	//Restore function
-	if (!VMMDLL_MemWrite(mem.vHandle, pid, reinterpret_cast<uintptr_t>(function), orig_bytes.get(), sizeof(jmp_bytes)))
+	/*if (!VMMDLL_MemWrite(mem.vHandle, pid, reinterpret_cast<uintptr_t>(function), orig_bytes.get(), sizeof(jmp_bytes)))
 	{
 		LOG("[!] 2 Failed to write memory at 0x%p\n", function);
 		return false;
-	}
+	}*/
+
+	LOG("[!] 2 Failed to write memory at 0x%p\n", function);
+	return false;
 
 	return true;
 }
