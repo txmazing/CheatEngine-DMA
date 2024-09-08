@@ -4,6 +4,11 @@
 #include <thread>
 #include <iostream>
 
+#include <ctime>
+#include <iomanip>
+#include <shlobj.h>
+#include <fstream>
+
 Memory::Memory()
 {
 	LOG("loading libraries...\n");
@@ -125,13 +130,44 @@ bool Memory::SetFPGA()
 	return true;
 }
 
+bool Memory::Init(int process_pid, bool memMap, bool debug)
+{
+	std::string process_name = "";
+	PVMMDLL_PROCESS_INFORMATION process_info = NULL;
+	DWORD total_processes = 0;
+
+	if (!VMMDLL_ProcessGetInformationAll(this->vHandle, &process_info, &total_processes))
+	{
+		LOG("[!] Failed to get process list\n");
+		return false;
+	}
+
+	for (size_t i = 0; i < total_processes; i++)
+	{
+		auto process = process_info[i];
+		if (process.dwPID == process_pid)
+		{
+			process_name = process.szName;
+			break;
+		}
+	}
+
+	if (process_name.empty())
+	{
+		LOG("[!] Failed to find process name for PID %d\n", process_pid);
+		return false;
+	}
+
+	return Init(process_name, memMap, debug);
+}
+
 bool Memory::Init(std::string process_name, bool memMap, bool debug)
 {
 	if (!DMA_INITIALIZED)
 	{
-		LOG("inizializing...\n");
+		LOG("initializing...\n");
 	reinit:
-		LPCSTR args[] = {const_cast<LPCSTR>(""), const_cast<LPCSTR>("-device"), const_cast<LPCSTR>("fpga://algo=0"), const_cast<LPCSTR>(""), const_cast<LPCSTR>(""), const_cast<LPCSTR>(""), const_cast<LPCSTR>("")};
+		LPCSTR args[] = { const_cast<LPCSTR>(""), const_cast<LPCSTR>("-device"), const_cast<LPCSTR>("fpga://algo=0"), const_cast<LPCSTR>(""), const_cast<LPCSTR>(""), const_cast<LPCSTR>(""), const_cast<LPCSTR>("") };
 		DWORD argc = 3;
 		if (debug)
 		{
@@ -159,7 +195,6 @@ bool Memory::Init(std::string process_name, bool memMap, bool debug)
 			{
 				LOG("Dumped memory map!\n");
 
-				//Add the memory map to the arguments and increase arg count.
 				args[argc++] = const_cast<LPSTR>("-memmap");
 				args[argc++] = const_cast<LPSTR>(path.c_str());
 			}
@@ -198,12 +233,6 @@ bool Memory::Init(std::string process_name, bool memMap, bool debug)
 	else
 		LOG("DMA already initialized!\n");
 
-	/*if (PROCESS_INITIALIZED)
-	{
-		LOG("Process already initialized!\n");
-		return true;
-	}*/
-
 	current_process.PID = GetPidFromName(process_name);
 	if (!current_process.PID)
 	{
@@ -230,41 +259,75 @@ bool Memory::Init(std::string process_name, bool memMap, bool debug)
 		return false;
 	}
 
+
 	LOG("Process information of %s\n", process_name.c_str());
 	LOG("PID: %i\n", current_process.PID);
 	LOG("Base Address: 0x%llx\n", current_process.base_address);
 	LOG("Base Size: 0x%llx\n", current_process.base_size);
 
-	mem.DumpMemory(current_process.base_address, "D:\\Dumps\\dump.exe");
+	// Open a new CMD window and ask for user confirmation
+	system("start /WAIT cmd /c \"echo Do you want to dump the process memory? && echo [1] DUMP && echo [2] NO DUMP && choice /c 12 /n /m \"Select an option:\" > %TEMP%\\dump_confirm.txt\"");
+
+	// Read user input
+	std::ifstream confirm_file(std::string(getenv("TEMP")) + "\\dump_confirm.txt");
+	std::string confirm;
+	std::getline(confirm_file, confirm);
+	confirm_file.close();
+
+	// Remove temporary file
+	remove((std::string(getenv("TEMP")) + "\\dump_confirm.txt").c_str());
+
+	// Extract the last character of the confirm string, which will be '1' or '2'
+	char choice = confirm[confirm.length() - 1];
+
+	if (choice == '1')
+	{
+		// Ask user to select directory
+		BROWSEINFOW bi = { 0 };
+		bi.lpszTitle = L"Select dump directory";
+		LPITEMIDLIST pidl = SHBrowseForFolderW(&bi);
+		if (pidl != 0)
+		{
+			WCHAR path[MAX_PATH];
+			SHGetPathFromIDListW(pidl, path);
+
+			// Get current time
+			auto t = std::time(nullptr);
+			auto tm = *std::localtime(&t);
+			std::wostringstream oss;
+			oss << std::put_time(&tm, L"%Y-%m-%d_%H-%M-%S");
+
+			// Convert process_name to wstring
+			std::wstring wprocess_name(process_name.begin(), process_name.end());
+
+			// Create dump filename with timestamp and process name
+			std::wstring dump_filename = std::wstring(path) + L"\\" + oss.str() + L"_" + wprocess_name + L"_dump.exe";
+
+			// Dump memory
+			DumpMemory(current_process.base_address, std::string(dump_filename.begin(), dump_filename.end()));
+
+			LOG("Memory dumped to: %ls\n", dump_filename.c_str());
+
+			// Free the PIDL
+			CoTaskMemFree(pidl);
+		}
+		else
+		{
+			LOG("Directory selection cancelled. Memory not dumped.\n");
+		}
+	}
+	else if (choice == '2')
+	{
+		LOG("Memory dump cancelled by user.\n");
+	}
+	else
+	{
+		LOG("Invalid input. Memory not dumped.\n");
+	}
 
 	PROCESS_INITIALIZED = TRUE;
 
 	return true;
-}
-
-bool Memory::Init(int process_pid, bool memMap, bool debug)
-{
-	PVMMDLL_PROCESS_INFORMATION process_info = NULL;
-	DWORD total_processes = 0;
-
-	if (!VMMDLL_ProcessGetInformationAll(this->vHandle, &process_info, &total_processes))
-	{
-		LOG("[!] Failed to get process list\n");
-		return false;
-	}
-
-	std::string name = "";
-	for (size_t i = 0; i < total_processes; i++)
-	{
-		auto process = process_info[i];
-		if (process.dwPID == process_pid)
-		{
-			name = process.szNameLong;
-			break;
-		}
-	}
-
-	return mem.Init(name, memMap, debug);
 }
 
 DWORD Memory::GetPidFromName(std::string process_name)
@@ -548,10 +611,10 @@ bool Memory::FixCr3()
 	return false;
 }
 
-bool Memory::DumpMemory(uintptr_t address, std::string path)
+bool Memory::DumpMemory(uintptr_t address, const std::string& path)
 {
 	LOG("[!] Memory dumping currently does not rebuild the IAT table, imports will be missing from the dump.\n");
-	IMAGE_DOS_HEADER dos { };
+	IMAGE_DOS_HEADER dos{ };
 	Read(address, &dos, sizeof(IMAGE_DOS_HEADER));
 
 	//Check if memory has a PE 
@@ -587,54 +650,6 @@ bool Memory::DumpMemory(uintptr_t address, std::string path)
 		sections->PointerToRawData = sections->VirtualAddress;
 		sections->SizeOfRawData = sections->Misc.VirtualSize;
 	}
-
-	//Find all modules used by this process
-	//auto descriptor = Read<IMAGE_IMPORT_DESCRIPTOR>(address + ntHeader->OptionalHeader.DataDirectory[1].VirtualAddress);
-
-	//int descriptor_count = 0;
-	//int thunk_count = 0;
-
-	/*std::vector<ModuleData> modulelist;
-	while (descriptor.Name) {
-		auto first_thunk = Read<IMAGE_THUNK_DATA>(moduleAddr + descriptor.FirstThunk);
-		auto original_first_thunk = Read<IMAGE_THUNK_DATA>(moduleAddr + descriptor.OriginalFirstThunk);
-		thunk_count = 0;
-
-		char ModuleName[256];
-		ReadMemory(moduleAddr + descriptor.Name, (void*)&ModuleName, 256);
-
-		std::string DllName = ModuleName;
-
-		ModuleData tmpModuleData;
-
-		//if(std::find(modulelist.begin(), modulelist.end(), tmpModuleData) == modulelist.end())
-		//	modulelist.push_back(tmpModuleData);
-		while (original_first_thunk.u1.AddressOfData) {
-			char name[256];
-			ReadMemory(moduleAddr + original_first_thunk.u1.AddressOfData + 0x2, (void*)&name, 256);
-
-			std::string str_name = name;
-			auto thunk_offset{ thunk_count * sizeof(uintptr_t) };
-
-			//if (str_name.length() > 0)
-			//	imports[str_name] = moduleAddr + descriptor.FirstThunk + thunk_offset;
-
-			++thunk_count;
-			first_thunk = Read<IMAGE_THUNK_DATA>(moduleAddr + descriptor.FirstThunk + sizeof(IMAGE_THUNK_DATA) * thunk_count);
-			original_first_thunk = Read<IMAGE_THUNK_DATA>(moduleAddr + descriptor.OriginalFirstThunk + sizeof(IMAGE_THUNK_DATA) * thunk_count);
-		}
-
-		++descriptor_count;
-		descriptor = Read<IMAGE_IMPORT_DESCRIPTOR>(moduleAddr + ntHeader->OptionalHeader.DataDirectory[1].VirtualAddress + sizeof(IMAGE_IMPORT_DESCRIPTOR) * descriptor_count);
-	}*/
-
-	//Rebuild import table
-
-	//LOG("[!] Creating new import section\n");
-
-	//Create New Import Section
-
-	//Build new import Table
 
 	//Dump file
 	const auto dumped_file = CreateFileW(std::wstring(path.begin(), path.end()).c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_COMPRESSED, NULL);
