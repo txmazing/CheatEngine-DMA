@@ -235,8 +235,6 @@ bool Memory::Init(std::string process_name, bool memMap, bool debug)
 	LOG("Base Address: 0x%llx\n", current_process.base_address);
 	LOG("Base Size: 0x%llx\n", current_process.base_size);
 
-	mem.DumpMemory(current_process.base_address, "D:\\Dumps\\dump.exe");
-
 	PROCESS_INITIALIZED = TRUE;
 
 	return true;
